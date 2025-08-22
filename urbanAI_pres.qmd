@@ -5,6 +5,8 @@ subtitle: "Resivisión ejecutiva de estudios de IA y Urbanismo"
 author: "Denis Berroeta G."
 date: "08-22-2025"
 bibliography: bibliography.bib
+resources:
+    - images/**   
 format:
   revealjs:
     # footer: "_Paper Review de Modelos de Inteligencia Artificial y Territorio_"
