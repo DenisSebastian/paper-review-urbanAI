@@ -1,0 +1,36 @@
+/.quarto/
+/.quarto/
+
+# Archivos basura macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Carpetas basura macOS
+__MACOSX/
+
+# Archivos de icono de carpeta
+Icon
+
+# Archivos de Spotlight
+.Spotlight-V100
+
+# Archivos de Time Machine
+.Trashes
+
+
+data
+data/
+data/*
+.Rproj.user
+
+
+
+prompt
+prompt/
+prompt/*
+
+
+md
+md/
+md/*

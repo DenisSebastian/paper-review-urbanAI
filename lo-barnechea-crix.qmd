@@ -1,0 +1,114 @@
+---
+title: "Predicción y Explicación de Delitos (CriX)"
+subtitle: "Implementación Municipal — Caso Lo Barnechea"
+author: "Centro de Investigación Territorial"
+date: "2025-08-14"
+format:
+  revealjs:
+    theme: [default]
+    slide-number: true
+    preview-links: true
+    css: style/style.css
+    toc: false
+    incremental: true
+    controls: true
+    center: false
+
+    transition: fade
+    footer: "© Centro de Investigación Territorial — Demo"
+---
+
+## Propósito
+
+- Implementar un sistema **predictivo y explicable** de delitos para **Lo Barnechea**.  
+- Integrar datos **delictivos, demográficos y urbanos** para **focalizar** prevención e inversión.  
+- Entregar **transparencia y trazabilidad** de factores de riesgo para **autoridades y comunidad**.  
+
+---
+
+## Por qué Lo Barnechea
+
+- **Capacidad instalada**: centro de monitoreo, patrullaje, cámaras, personal capacitado.  
+- **Datos disponibles**: registros policiales, catastros municipales, movilidad y alumbrado.  
+- **Oportunidad de liderazgo**: piloto replicable a otras comunas del país.  
+
+---
+
+## Arquitectura propuesta (alto nivel)
+
+1. **Ingesta de datos** (delito, demografía, entorno urbano, movilidad).  
+2. **Preprocesamiento** y normalización; geocodificación y control de calidad.  
+3. **Clustering espacio‑temporal (ST-DBSCAN)** para hotspots actuales.  
+4. **Predicción de hotspots** con **LSTM** a 1–4 semanas.  
+5. **Capa XAI**: explicaciones de factores (ingresos, alfabetización, iluminación, flujo).  
+6. **Panel municipal**: mapas, alertas y recomendaciones de acción.  
+
+> Nota: Metodología inspirada en **CriX** (Reza et al., 2025).
+
+---
+
+## Ejemplos Aplicabilidad en Proyectos
+
+:::::: columns
+::: {.column .p_small_l width="55%"}
+**Rediseño de patrullaje preventivo**  
+- Rutas y horarios según hotspots proyectados.  
+- Coordinación con Carabineros y seguridad municipal.  
+
+**Infraestructura y entorno**  
+- Priorización de **iluminación LED**, poda y visibilidad en micro‑zonas críticas.  
+- Reubicación/ajuste de cámaras y pórticos lectores.  
+
+**Prevención comunitaria focalizada**  
+- Campañas barriales con **ONGs** y juntas de vecinos.  
+- Medición de impacto por **micro‑zona** (antes/después).  
+
+**KPIs**  
+- Precisión de predicción, tiempo de respuesta, reducción de incidencia, **percepción de seguridad**.  
+:::
+
+::: {.column .p_small_m width="5%"}
+:::
+
+::: {.column width="40%"}
+IAMAGEN ![](images/reza-map.png){width="100%"}
+:::
+::::::
+
+---
+
+## Beneficios clave para la Municipalidad
+
+- **Prevención proactiva** con foco territorial fino (manzana/cuadra).  
+- **Optimización** del uso de personal e infraestructura.  
+- **Transparencia y accountability**: decisiones explicables, comunicables a la ciudadanía.  
+- **Escalabilidad**: replicable a otras zonas y fenómenos (robos, incivilidades).  
+
+---
+
+## Plan de implementación (12 semanas)
+
+- **Semanas 1–2**: acuerdos de datos, gobierno y protocolos de privacidad.  
+- **Semanas 3–5**: ingesta, limpieza, geocodificación y QA.  
+- **Semanas 6–8**: modelos ST‑DBSCAN + LSTM y validación cruzada.  
+- **Semanas 9–10**: capa **XAI** y panel municipal (mapas/alertas).  
+- **Semanas 11–12**: piloto operacional y evaluación de KPIs.  
+
+> Entregables: dataset consolidado, modelos, tablero operativo y reporte de evaluación.
+
+---
+
+## Gobernanza, ética y gestión del riesgo
+
+- **Privacidad**: minimización de datos y anonimización cuando corresponda.  
+- **No estigmatización**: foco en **lugares** y **situaciones**, no en personas.  
+- **Supervisión humana** y auditoría de sesgos.  
+- **Acuerdos interinstitucionales** y trazabilidad de decisiones.  
+
+---
+
+## Cierre
+
+- Lo Barnechea puede liderar la adopción de **IA explicable** en seguridad.  
+- Propuesta **pragmática y medible** con beneficios en prevención y confianza pública.  
+- Listos para co‑diseñar el piloto con el equipo municipal.

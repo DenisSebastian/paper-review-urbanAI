@@ -1,0 +1,681 @@
+---
+title: "Urbanismo e Inteligencia Artificial"
+subtitle: "Resivisión ejecutiva de estudios de IA y Urbanismo"
+# institute: "Centro de Inteligencia Territorial - UAI"
+author: "Denis Berroeta G."
+date: "08-22-2025"
+bibliography: bibliography.bib
+format:
+  revealjs:
+    # footer: "_Paper Review de Modelos de Inteligencia Artificial y Territorio_"
+    preview-links: true
+    css: style/style_long.css
+    transition: slide
+    progress: true
+    hash: true
+    center: true
+    chalkboard: true
+    theme: default
+    width: 1920
+    height: 1080
+---
+
+# Proyecto de Paper Review
+
+## 
+
+### Proyecto de Paper Review
+
+:::::: columns
+::: {.column .p_small width="40%"}
+Este proyecto tiene como propósito central la revisión, análisis, documentación y difusión de investigaciones científicas recientes en inteligencia artificial (IA), con énfasis en aplicaciones prácticas y potencial impacto territorial en Chile. Se orienta a facilitar el acceso y comprensión de avances significativos en dos líneas principales:
+
+-   [Urban AI]{.verde}: Aplicaciones de IA en contextos urbanos (planificación urbana, accesibilidad, desigualdad, vulnerabilidad, seguridad ciudadana).
+
+-   [Remote Sensing AI]{.verde} : Aplicaciones de IA en percepción remota (monitoreo ambiental, gestión de recursos naturales, prevención de riesgos).
+:::
+
+::: {.column .p_small_m width="10%"}
+:::
+
+::: {.column .p_small_m width="50%"}
+<br>
+
+![](images/lineas.png){width="100%"}
+:::
+::::::
+
+## Roadmap
+
+![](images/roadmap.png){width="100%"}
+
+## Roadmap: Estado actual
+
+![](images/stage-1){width="100%"}
+
+# Population Dynamics Foundation Model
+
+## 
+
+### Population Dynamics Foundation Model (PDFM)
+
+:::::: columns
+::: {.column .p_small_m width="40%"}
+| Elemento | Detalle |
+|--------------------------------------|----------------------------------|
+| **Título completo** | General Geospatial Inference with a Population Dynamics Foundation Model |
+| **DOI** | <https://doi.org/10.48550/arXiv.2411.07207> |
+| **Temática** | IA geoespacial; modelos fundacionales; GNN; *embeddings* multimodales; forecasting |
+| **Contexto** | Unifica señales heterogéneas para inferir dinámicas poblacionales y apoyar predicción. Busca *embeddings* reutilizables para interpolación, extrapolación y super-resolución. |
+| **Keywords** | foundation model, geospatial embeddings, GNN, multimodal, interpolación, forecasting |
+
+: Información del Paper {.p_small_tabset}
+
+![](images/agawarl-logo.png){fig-align="center" width="300"}
+
+:::
+
+::: {.column .p_small_m width="5%"}
+:::
+
+::: {.column .p_small_m width="55%"}
+### Ideas Claves {.gris}
+
+-   Propone un modelo fundacional geoespacial (PDFM) que integra múltiples fuentes para aprender *embeddings* locales reutilizables.\
+
+-   Con estos *embeddings*, el sistema aborda [interpolación, extrapolación y super-resolución]{.verde} de variables socioeconómicas y ambientales, y mejora [pronósticos]{.verde} cuando se combina con modelos temporales.
+
+-   Evalúa 27 tareas principalmente en EE.UU., mostrando ventajas frente a *baselines* y discutiendo limitaciones por desalineación temporal, cobertura geográfica y riesgos de sesgo.
+
+
+:::
+::::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+##  
+
+<center>![](images/agawarl-pases.png){width="70%"}</center>
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+##  Flujo de Trabajo
+::::: columns
+::: {.column .p_small_m width="40%"}
+
+<br>
+
+- **Fase 1 – Modelo fundacional (PDFM):** construcción de un grafo geoespacial (códigos postales y condados como nodos; aristas por proximidad y similitud de comportamiento) e integración de modalidades (tendencias de búsqueda agregadas, POIs en mapas, *busyness*, clima y calidad del aire; además embeddings SatCLIP como variante).
+
+
+- **Fase 2 – Tareas downstream:** uso de *embeddings* como covariables en modelos ligeros (Ridge, GBDT, MLP) para **interpolación**, **extrapolación** y **super‑resolución** de 27 variables (salud, socioeconomía, ambiente).\
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![Training and Applying the Population Dynamics Foundation Model](images/agawarl-pases.png)
+:::
+:::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+## Datos
+::::: columns
+::: {.column .p_small_m width="40%"}
+
+
+
+[Datos Fase 1]{.gris}
+
+1. **Tendencias de búsqueda agregadas** (jul‑2022).
+2. **Mapas (POIs)** (may‑2024).
+3. **Busyness** (H1‑2024).
+4. **Clima & Calidad del aire** (jul‑2022).
+
+-   Embeddings de comparación y complemento: **SatCLIP** (2021‑2023).
+
+[Datos Fase 2]{.gris}
+
+-   Etiquetas *downstream* provienen de **Data Commons / CDC PLACES (2022)** y catálogos de productos satelitales (p.ej., *night lights*, elevación).
+
+
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![Bases de Datos para utilizadas para la fase 2](images/agawarl-tematics.png){fig-align="center"}
+:::
+:::::
+
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+## Metodología FASE 1:
+
+<center>
+![](videos/PDFM-video.mp4)
+</center>
+
+
+## Metodología y algoritmos
+::::: columns
+::: {.column .p_small_m width="40%"}
+
+<br>
+<br>
+
+- **PDFM (GNN GraphSAGE):** muestreo de subgrafos hasta 4 saltos; agregación *pooling*; una ronda de *message passing*; capa lineal final (≈330 dim); entrenamiento auto‑supervisado con pérdida Huber; *embeddings* con **partición por fuente** (0‑127 Búsquedas; 128‑255 Mapas/Busyness; 256‑329 Clima/Calidad aire).\
+
+- **Downstream:** Ridge, **LightGBM** (GBDT; hasta 3000 árboles; 31 hojas; *lr* 0.02), **MLP** (512‑256‑128, ReLU, *dropout* 0.2, Adam, 40 épocas).\
+
+- **Pronóstico:** TimesFM + MLP adaptador (2 capas) para corrección de errores.
+
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![](images/agawarl-graph.png){fig-align="center"}
+
+:::
+:::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+
+## Resultados
+::::: columns
+::: {.column .p_small width="40%"}
+
+- Interpolación SoTA promedio R² ≈ 0.83 en 27 tareas
+- 25/27 tareas mejoran en extrapolación y super-resolución
+- Pronósticos mejoran 5–20% MAPE combinando PDFM con TimesFM
+- Limitaciones: desalineación temporal, enfoque EE.UU., *embeddings* estáticos
+- SatCLIP + PDFM mejora interpolación; efectos mixtos en extrapolación]
+
+![](images/agawarl-tbl-global.png){width="100%"}
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![](images/agarwal-pdfm-interp-bars.png){width="100%"}
+
+:::
+:::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+## Discusión
+::::: columns
+::: {.column .p_small_m width="40%"}
+1.  **Contribuciones:**
+
+    -   Primer marco fundacional geoespacial multimodal validado en 27 tareas.\
+    -   Embeddings desagregados por fuente, aportando interpretabilidad.\
+    -   Adaptabilidad a forecasting (TimesFM).\
+
+
+2. **Limitaciones:**
+    -   Desalineación temporal de fuentes.\
+    -   Alcance geográfico limitado a EE.UU.\
+    -   Embeddings estáticos (no dinámicos).\
+    -   Riesgos de privacidad y sesgos poblacionales.\
+
+3. **Futuro:**
+    -   Extensión global
+    -   Inclusión de aristas espaciotemporales y movilidad.\
+    -   Garantías de privacidad diferencial.
+
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![](images/agarwal-pdfm-comparation.png){width="100%"}
+:::
+:::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+
+## Aplicabilidad (Según autores)
+::::: columns
+::: {.column .p_small_m width="40%"}
+
+
+<br>
+<br>
+<br>
+
+- **Salud pública**: Predecir enfermedades y orientar políticas y recursos de salud.  
+
+- **Retail**: Integrar población, consumo y competencia en decisiones estratégicas.  
+
+- **Riesgo climático**: Modelar impactos de deforestación, calidad del aire y cambio climático.  
+
+- **Economía**: Caracterizar regiones con *embeddings* para optimizar PIB y desempleo.  
+
+:::
+::: {.column .p_small_m width="5%"}
+:::
+::: {.column width="55%"}
+![](images/agarwal-pdfm-interp_health.png){width="100%"}
+:::
+:::::
+
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+
+## Aplicabilidad Chile
+::::: columns
+::: {.column .p_small_m width="48%"}
+
+<br>
+<br>
+
+![](images/agarwarl-phases2.png){width="100%"}
+
+
+:::
+::: {.column .p_small_m width="2%"}
+:::
+::: {.column width="50%" .p_small_vl}
+
+1. [Interpolación]{.verde}: [Rellenar datos faltantes  en áreas con información parcial.]{.bg_opacity_1}
+
+      -  Calidad del aire: datos satelitales + estaciones urbanas.
+      - Seguridad pública: Completar información de delitos (cifra negra)
+      -  Estimar condiciones de ruido
+
+2. [Extrapolación]{.verde}: [Predecir variables en zonas o regiones sin datos previos.]{.bg_opacity_1}
+
+      - Salud: Extender prevalencia de enfermedades crónicas a comunas sin encuestas de salud regionales.
+      - Riesgo climático: Estimar exposición a sequías en zonas sin estaciones meteorológicas históricas.
+
+3. [Super-resolución]{.verde}: [Estimaciones a mayor nivel de detalle que el original.]{.bg_opacity_1}
+    
+    - Censo 2024 → Manzanas urbanas: Desagregar  desde nivel zonas a manzanas.
+    - Seguridad: Riesgo delictual por barrio a partir de datos agregados comunales.
+
+4. [Pronósticos]{.verde}: [Predecir la evolución temporal de variables clave.]{.bg_opacity_1}
+
+    - Desempleo comunal: Usando series históricas + datos satelitales para prever focos de desempleo.
+    - Criminalidad: Predecir evolución mensual de delitos en comunas críticas para planes de seguridad.
+
+:::
+:::::
+[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
+# Urban Agents
+
+## Concepts, Capabilities, and Applications
+
+:::::: columns
+::: {.column .p_small width="40%"}
+<br>
+
+| Elemento | Detalle |
+|------------------------|------------------------------------------------|
+| **Título completo** | Large Language Model Powered Intelligent Urban Agents: Concepts, Capabilities, and Applications |
+| **DOI** | <https://doi.org/10.48550/arXiv.2507.00914> |
+| **Temática** | Agentes urbanos con LLM; integración IA–datos espaciales |
+| **Contexto** | Los enfoques previos carecen de flexibilidad y generalización espaciotemporal; los LLM habilitan agentes urbanos más adaptativos. |
+| **Keywords** | LLM, agentes urbanos, RAG, transporte, planificación, confiabilidad |
+
+: Información del Paper {.p_small_tabset\_}
+:::
+
+::: {.column .p_small_m width="10%"}
+:::
+
+::: {.column .p_small_m width="50%"}
+### **Puntos Claves** {.gris}
+
+1.  Define el concepto de [agentes urbanos]{.verde} potenciados por LLM y sus capacidades. Se propone marco conceptual y arquitectura, haciendo una revisión sistemática del estado del arte.
+
+2.  **Componentes principales:**
+
+    -   Percepción urbano (urban sensing)\
+    -   Gestión de memoria (short y long-term)\
+    -   Razonamiento (espacio-temporal, causal)\
+    -   Ejecución de acciones (digitales/físicas)\
+    -   Aprendizaje (sintético y retroalimentado)
+
+3.  Describe aplicaciones en planificación, transporte, ambiente, seguridad y sociedad.
+
+4.  Discute confiabilidad, evaluación y retos para despliegues en el mundo real.
+:::
+::::::
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+
+## Metodología y algoritmos
+
+<center>![](images/han-components.png){width="60%" fig-align="center"}</center>
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Metodología y algoritmos
+
+:::::: columns
+::: {.column .p_small_l width="58%"}
+-   **Enfoque**: revisión conceptual y sistemática sobre agentes urbanos LLM. Actúa en entornos híbridos (ciber, físico, social)\
+
+-   **Modelos**: Transformer instruccionado, RAG, RLHF, cadenas de pensamiento.
+
+-   **Diseño**: cinco módulos—sensado, memoria, razonamiento, ejecución, aprendizaje.
+
+-   **Salidas**: Planes urbanos, informes, sugerencias
+
+-   **Datos**:
+
+    <center>
+
+    | Tipo              | Fuente                        |
+    |-------------------|-------------------------------|
+    | Geovector         | OSM, catastros urbanos        |
+    | Series temporales | Sensores tráfico/aire         |
+    | Trayectorias GPS  | Registros movilidad municipal |
+    | Imágenes          | Satélite, cámaras urbanas     |
+
+    : {.p_small_tabset}
+
+</center>
+:::
+
+::: {.column .p_small_m width="2%"}
+:::
+
+::: {.column width="40%"}
+<br> ![](images/han-components.png){width="120%"}
+:::
+::::::
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Resultados clave y discusión
+
+<center>![](images/han-urbanAI.png){width="80%"}</center>
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Resultados clave y discusión
+
+:::::: columns
+::: {.column .p_small width="58%"}
+-   Marco unificado de cinco módulos mejora decisiones a nivel sistema.
+-   Aplicaciones: planificación, transporte, ambiente, seguridad y sociedad urbana.
+-   RAG y acceso a APIs elevan precisión del razonamiento multimodal.
+-   Limitaciones: evaluación dominada por simulación; escasa validación en producción.
+-   Comparativas con lineas bases muestran mejoras, pero con heterogeneidad metodológica.
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="40%"}
+![](images/han-urbanAI.png){width="100%"}
+:::
+::::::
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Aplicabilidad en Chile
+
+<center>![](images/han-applications){width="80%"}</center>
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Aplicabilidad en Chile
+
+:::::: columns
+::: {.column .p_small_vl width="50%"}
+-   **Planificación territorial inteligente**: Integrar análisis urbano con datos chilenos para apoyar políticas públicas y priorizar inversiones.
+
+-   **Monitoreo ambiental avanzado**: Uso combinado de sensores nacionales y satélites abiertos para alertas y gestión sostenible.
+
+-   **Optimización del transporte**: Simuladores urbanos y control adaptativo de semáforos para reducir congestión y emisiones.
+
+-   **Condiciones habilitantes**: Acceso a datos locales, escalas territoriales pertinentes, resguardo de privacidad y alineamiento con normativas.
+
+-   **Impacto directo**: Ministerios, municipalidades, gestores ambientales y ciudadanía mejor informada y partícipe.
+:::
+
+::: {.column .p_small_m width="5%"}
+:::
+
+::: {.column width="45%"}
+<br>
+
+![](images/han-applications){width="100%"}
+:::
+::::::
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+## Ejemplos Aplicabilidad en Proyectos: Municipal
+
+
+![](images/digital-city.png){width="40%" fig-align="center"}
+
+
+## Ejemplos Aplicabilidad en Proyectos: Municipal
+
+:::::: columns
+::: {.column .p_small width="65%"}
+[Diagnóstico:]{.verde} Exceso de datos heterogéneos (seguridad, social, obras, medio ambiente, transporte) que superan la capacidad municipal para analizarlos y convertirlos en acciones.
+
+[**Arquitectura inspirada en la Ciudad Digital:**]{.verde}
+
+1.  **Captura IoT y Fuentes Locales**: Sensores de calidad del aire, cámaras de seguridad, sistemas de transporte, catastros, registros sociales y obras.
+
+2.  **Procesamiento Inteligente**: Filtrado y categorización automática. Análisis espacial y temporal.Síntesis para cuadros ejecutivos y dashboards.
+
+3.  **Toma de Decisiones**:
+
+    -   Generación de alertas y acciones preventivas (patrullaje, iluminación, obras).
+    -   Simulación de escenarios para planificación estratégica.
+:::
+
+::: {.column .p_small_m width="2%"}
+:::
+
+::: {.column width="30%"}
+<br>
+
+![](images/digital-city.png){width="80%" fig-align="right"}
+:::
+::::::
+
+[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+
+<!-- # CriX: Intersection of Crime, Demographics and Explainable AI -->
+
+<!-- ## CriX: Intersection of Crime, Demographics and Explainable AI -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small_m width="40%"} -->
+<!-- <br> <br> -->
+
+<!-- | Elemento | Detalle | -->
+<!-- |--------------------------------------|----------------------------------| -->
+<!-- | **Título** | CriX: Intersection of Crime, Demographics and Explainable AI | -->
+<!-- | **DOI** | <https://doi.org/10.5220/0013316200003890> | -->
+<!-- | **Temática** | Predicción de hotspots con factores demográficos y XAI | -->
+<!-- | **Contexto** | Los enfoques tradicionales ignoran heterogeneidad local y demografía; se integra clustering, predicción secuencial y LLMs para explicabilidad. | -->
+<!-- | **Keywords** | predicción delictiva, hotspots, demografía, ST-DBSCAN, LSTM, XAI | -->
+
+<!-- : Información del Paper {.p_small_tabset} -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="5%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="55%"} -->
+<!-- ### Puntos Claves {.gris} -->
+
+<!-- -   **Problema**: Los modelos de predicción delictiva suelen omitir factores demográficos; una estrategia “talla única” no sirve para realidades locales. -->
+
+<!-- -   **Propuesta (CriX)**: Marco que integra demografía y Explainable AI (XAI) para entender y abordar crimen localizado. -->
+
+<!-- -   **Método**: ST-DBSCAN para identificar hotspots y LSTM para predecirlos; embeddings con InLegalBERT sobre datos de hotspots, demografía y leyes; almacenamiento en vector store FAISS y recuperación vía RAG; generación y refinamiento textual con MistralAI y zero-shot. -->
+
+<!-- -   **Resultados**: Exactitud de validación \>82% en predicción de hotspots; métricas XAI (Compactness, Fidelity, Completeness) promedio 4.18/5, superando baselines. -->
+
+<!-- -   **Aporte**: Mejora la interpretabilidad de modelos legales y la utilidad operativa al incorporar demografía y técnicas de XAI. -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+<!-- ## Metodología y algoritmos -->
+
+<!-- <center>![](images/reza-arquitectura.png){width="60%"}</center> -->
+
+<!-- ## Metodología y algoritmos -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small_l width="50%"} -->
+<!-- 1.  Recolección y preprocesamiento de datos de FIR (2020–2022) y de indicadores demográficos (GDDP, NDDP, PCI, HDI, tasa de alfabetización, índice de salud). -->
+
+<!-- 2.  Clustering espacial-temporal con ST-DBSCAN para identificar hotspots actuales.\ -->
+
+<!-- 3.  Predicción de hotspots futuros mediante un modelo LSTM entrenado con secuencias de datos demográficos y de crimen.\ -->
+
+<!-- 4.  Generación de embeddings con InLegalBERT, almacenamiento en FAISS y recuperación dinámica vía RAG.\ -->
+
+<!-- 5.  Generación de explicaciones textuales con Mixtral-8x22B-Instruct-v0.1 y refinamiento por zero-shot learning. -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="5%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+<!-- ![Proposed Architecture Diagram for CriX (Crime Explainer).](images/reza-arquitectura.png) -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+<!-- ## Datos -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small_m width="40%"} -->
+<!-- -   **Fuentes**: FIR policiales y demografía distrital del Gobierno de Karnataka. -->
+
+<!-- -   **Cobertura**: 2020–2022 para 31 distritos y 1.060 comisarías registradas. -->
+
+<!-- -   **Variables demográficas**: incluyen GDDP, NDDP, PCI, alfabetización, salud, HDI. -->
+
+<!-- -   **Preprocesamiento**: normalización, codificación, interpolaciones y promedios agregados por distrito. -->
+
+<!-- <br> -->
+
+<!-- <center> -->
+
+<!-- | Tipo                     | Fuente                                   | -->
+<!-- |--------------------------|------------------------------------------| -->
+<!-- | Registros FIR de crimen  | Karnataka State Police (scraping)        | -->
+<!-- | Indicadores demográficos | data.opencity.in / Gobierno de Karnataka | -->
+
+<!-- : Registros utilizados {.p_small_tabset} -->
+
+<!-- </center> -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="10%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- <center>![Features Key Utilised for ST-DBSCAN Clustering](images/reza-table.png){width="300"}![](images/reza-table2.png){width="400"}</center> -->
+
+<!-- <center>![](images/reza-st-dbscan.png){fig-align="center" width="500"}</center> -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+<!-- ## Resultados clave y discusión -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small_vl width="45%"} -->
+<!-- <br> -->
+
+<!-- -   Exactitud de validación LSTM 0.821; hotspots predichos con coherencia espacial-temporal. -->
+<!-- -   Métricas XAI promedio 4.18/5, superando baselines en fidelidad y compacidad. -->
+<!-- -   Factores determinantes: alfabetización, ingreso per cápita y desarrollo humano. -->
+<!-- -   Limitaciones: calidad de datos, generalización fuera de Karnataka y latencia operacional. -->
+
+<!-- > [Output]{.verde}: El modelo explica cada predicción de forma sencilla, señalando, por ejemplo, si una zona con alta incidencia delictiva podría estar asociada a desigualdad de ingresos o bajos niveles de alfabetización. Así, entrega información práctica que vincula el delito con factores demográficos y orienta intervenciones socioeconómicas. -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="3%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="52%"} -->
+<!-- ![](images/reza-map.png){width="100%"} -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+<!-- ## Aplicabilidad en Chile -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small_l width="55%"} -->
+<!-- <br> -->
+
+<!-- -   Aplicaciones: hotspots comunales, patrullajes focalizados, prevención situacional y planificación urbana *(derivada, no reportada)*. -->
+
+<!-- -   Requiere datos de denuncias, demografía censal, indicadores territoriales como los de la [MBHT]{.verde}. -->
+
+<!-- -   Ajustar parámetros **ST-DBSCAN** por densidad urbana y periodicidad de registros. -->
+
+<!-- -   Beneficiarios: [municpalidades]{.verde}, policías, fiscalías; soporte a políticas de seguridad. -->
+
+<!-- -   Considerar gobernanza de datos, sesgos y evaluación ética antes de despliegues [GobLab]{.verde}. -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="5%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="40%"} -->
+<!-- ![](images/reza-map.png){width="100%"} -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+<!-- ## Ejemplos Aplicabilidad en Proyectos: Municipal -->
+
+<!-- :::::: columns -->
+<!-- ::: {.column .p_small width="65%"} -->
+<!-- <br> -->
+
+<!-- 1.  **Integración de datos locales** -->
+<!--     -   Delitos e Incivilidades (Carabineros, PDI, CEAD) -->
+<!--     -   Información municipal (SEGURIDAD, DIDECO, OBRAS, PATENTES) -->
+<!--     -   MBHT -->
+<!-- 2.  **Modelado y predicción** -->
+<!--     -   Clustering espacio-temporal de delitos. -->
+<!--     -   Predicción de hotspots futuros con LSTM. -->
+<!--     -   Explicaciones automáticas de factores de riesgo (XAI). -->
+<!-- 3.  **Acción municipal focalizada** -->
+<!--     -   Patrullajes preventivos basados en predicciones. -->
+<!--     -   Campañas comunitarias en zonas críticas, mesas de trabajo. -->
+<!--     -   Planificación de infraestructura preventiva (iluminación, cámaras, etc.). -->
+<!-- ::: -->
+
+<!-- ::: {.column .p_small_m width="5%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="30%"} -->
+<!-- <br> <br> -->
+
+<!-- ![](images/lo-barnechea-logo.jpg){width="60%" fig-align="center"} -->
+<!-- ::: -->
+<!-- :::::: -->
+
+<!-- @rezacrix[ – CriX: Intersection of Crime, Demographics and Explainable AI]{.style_footer} -->
+
+##
+
+### Referencias {.title_h4}
