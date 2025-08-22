@@ -91,13 +91,14 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 ::::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 ##  
 
 <center>![](images/agawarl-pases.png){width="70%"}</center>
 
-[@han2025large — *Large Language Model Powered Intelligent Urban Agents*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+
 
 ##  Flujo de Trabajo
 ::::: columns
@@ -117,7 +118,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 :::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 ## Datos
 ::::: columns
@@ -148,7 +149,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::::
 
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 ## Metodología FASE 1:
 
@@ -179,7 +180,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 :::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 
 ## Resultados
@@ -202,7 +203,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 :::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 ## Discusión
 ::::: columns
@@ -233,7 +234,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 :::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 
 ## Aplicabilidad (Según autores)
@@ -261,7 +262,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 :::
 :::::
 
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 
 ## Aplicabilidad Chile
@@ -302,7 +303,7 @@ Este proyecto tiene como propósito central la revisión, análisis, documentaci
 
 :::
 :::::
-[[@agarwal2024pdfm] — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
+[@agarwal2024pdfm — *General Geospatial Inference with a Population Dynamics Foundation Model*]{.style_footer}
 
 # Urban Agents
 
